@@ -6,7 +6,7 @@ require('dotenv').config()
 // npm install dotenv on root folder
 const expressJwt = require('express-Jwt')
 // npm install express-jwt
-
+//npm install jsonwebtoken
 app.use(express.json())
 
 

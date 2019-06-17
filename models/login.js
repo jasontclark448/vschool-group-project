@@ -19,3 +19,4 @@ const login = new Schema({
 })
 
 module.exports = mongoose.model( "login", login)
+

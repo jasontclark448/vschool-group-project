@@ -30,3 +30,45 @@ todoRouter.post('/', (req, res, next) => {
     })
     
 })
+
+todoRouter.get('/:todoId', (req, res, next) => {
+    todo.findOne({_id: req.params.todoId, user: req.user._id}, (err, todo) => {
+        if (err) {
+            res.status(500)
+            return next(err)
+        }
+        if (!todo) {
+            res.status(404)
+            return next(new Error('No todo item found'))
+        }
+        return res.send(todo)
+    })
+})
+
+todoRouter.put('/todoId', (req, res, next) => {
+    Todo.findOneAndUpdate(
+        {_id: req.params.todoId, user: req.user._id},
+        req.body,
+        {new: true},
+        (err, todo) => {
+            if(err) {
+                res.status(500)
+                return next(err)
+            }
+            return res.send(todo)
+        }   
+    )
+})
+
+todo.delete('/:todoId', (req, res, next) => {
+    Todo.findOneAndRemove({_id: req.params.todoId, user: req.user._id}, (err, todo) => {
+        if (err) {
+            res.status(500)
+            return next(err)
+        }
+        return res.send(todo)
+    })
+})
+
+module.exports = todoRouter
+

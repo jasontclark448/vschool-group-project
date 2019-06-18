@@ -1,18 +1,47 @@
 const express = require("express")
 const videoRouter = express.Router()
 const Movie = require('../models/Movie.js')
+const fs = require('fs')
+const crypto = require('crypto')
+const multer = require('multer')
+const GridFsStorage = require('multer-gridfs-storage')
+const Grid = require('gridfs-stream')
+
+const mongoUri = "mongodb://localhost:27017/tings-video-db"
+
+//create storage engine
+const storage = new GridFsStorage({
+    url: mongoUri,
+    file: (req, file) => {
+      return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+          if (err) {
+            return reject(err);
+          }
+          const filename = buf.toString('hex') + path.extname(file.originalname);
+          const fileInfo = {
+            filename: filename,
+            bucketName: 'uploads'
+          };
+          resolve(fileInfo);
+        });
+      });
+    }
+  });
+  const upload = multer({ storage });
 
 // Add One - Insert
 videoRouter.post("/", (req, res) => {
     console.log(req.body)
-    const newMovie = new Movie(req.body)
-    newMovie.save((err, savedMovie) => {
-        if(err){
-            res.status(500)
-            return res.send(err)
-        }
-        return res.status(201).send(savedMovie)
-    })
+    upload.single(req.body.file)
+    // const newMovie = new Movie(req.body)
+    // newMovie.save((err, savedMovie) => {
+    //     if(err){
+    //         res.status(500)
+    //         return res.send(err)
+    //     }
+    //     return res.status(201).send(savedMovie)
+    // })
 })
 
 // Get all - Entire Collection (sub-collection)

@@ -1,6 +1,7 @@
 import React from 'react'
 
 
+
 const catalog1 = () => {
     return (
 
@@ -13,7 +14,7 @@ const catalog1 = () => {
                             <div class="col-12">
                                 <div class="header__content">
 
-                                    <a href="Main.js" class="header__logo">
+                                    <a href="Main1.js" class="header__logo">
 
                                         <img src="img/HappyCelebratedChihuahua-size_restricted.gif" alt=""></img>
 
@@ -22,7 +23,7 @@ const catalog1 = () => {
                                     <ul class="header__nav">
 
                                         <li class="header__nav-item">
-                                            <a href="Main.js" class="header__nav-link">Home</a>
+                                            <a href="Main1.js" class="header__nav-link">Home</a>
                                         </li>
 
 
@@ -100,7 +101,7 @@ const catalog1 = () => {
                                 <h2 class="section__title">History</h2>
 
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb__item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb__item"><a href="Main1.js">Home</a></li>
                                     <li class="breadcrumb__item breadcrumb__item--active">History</li>
                                 </ul>
 
@@ -114,20 +115,19 @@ const catalog1 = () => {
             <div class="catalog">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+       <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                             <div class="card">
                                 <div class="card__cover">
                                     <img src="img/covers/cover.jpg" alt=""></img>
-                                    <a href="#" class="card__play">
+                                    <a href="Main1.js" class="card__play">
                                         <i class="icon ion-ios-play"></i>
                                     </a>
                                 </div>
                                 <div class="card__content">
                                     <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
                                     <span class="card__category">
-                                        <a href="#">Action</a>
-                                        <a href="#">Conspiracy</a>
+                                        <a href="Main1.js">Action</a>
+                                        <a href="Main1.js">Conspiracy</a>
                                     </span>
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
                                 </div>
@@ -394,20 +394,19 @@ const catalog1 = () => {
                             <h2 class="section__title">History</h2>
                         </div>
 
-
-                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+       <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                             <div class="card">
                                 <div class="card__cover">
                                     <img src="img/covers/cover.jpg" alt=""></img>
-                                    <a href="#" class="card__play">
+                                    <a href="Main1.js" class="card__play">
                                         <i class="icon ion-ios-play"></i>
                                     </a>
                                 </div>
                                 <div class="card__content">
                                     <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
                                     <span class="card__category">
-                                        <a href="#">Action</a>
-                                        <a href="#">Conspiracy</a>
+                                        <a href="Main1.js">Action</a>
+                                        <a href="Main1.js">Conspiracy</a>
                                     </span>
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
                                 </div>

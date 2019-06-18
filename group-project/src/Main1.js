@@ -2,6 +2,7 @@ import React from 'react'
 
 
 
+
 const Main = () => {
     return (
         <div className="body">
@@ -12,18 +13,18 @@ const Main = () => {
                         <div className="row">
                             <div className="col-12">
                                 <div className="header__content">
-                                    <a href="Main.js" className="header__logo">
+                                    <a href="Main1.js" className="header__logo">
                                         <img src="img/HappyCelebratedChihuahua-size_restricted.gif" alt=""></img>
                                     </a>
                                     <ul className="header__nav">
 
                                         <li className="header__nav-item">
-                                            <a href="Main.js" className="header__nav-link">Home</a>
+                                            <a href="Main1.js" className="header__nav-link">Home</a>
                                         </li>
 
-                                        <li className="header__nav-item">
+                                        {/* <li className="header__nav-item">
                                             <a href="catalog1.js" className="header__nav-link">History</a>
-                                        </li>
+                                        </li> */}
 
 
                                         <li className="header__nav-item">

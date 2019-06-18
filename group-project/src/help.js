@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const help = () => {
 	return (
 
@@ -16,7 +17,7 @@ const help = () => {
 						<div class="page-404__content">
 							<h1 class="page-404__title">404</h1>
 							<p class="page-404__text">The page you are looking for not available!</p>
-							<a href="Main.js" class="page-404__btn">go back</a>
+							<a href="Main1.js" class="page-404__btn">go back</a>
 						</div>
 					</div>
 				</div>

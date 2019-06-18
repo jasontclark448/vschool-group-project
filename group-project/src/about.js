@@ -14,7 +14,7 @@ const About = () => {
 							<div className="col-12">
 								<div className="header__content">
 
-									<a href="Main.js" className="header__logo">
+									<a href="Main1.js" className="header__logo">
 
 										<img src="img/HappyCelebratedChihuahua-size_restricted.gif" alt=""></img>
 
@@ -23,7 +23,7 @@ const About = () => {
 
 									<ul className="header__nav">
 										<li className="header__nav-item">
-											<a href="Main.js" className="header__nav-link">Home</a>
+											<a href="Main1.js" className="header__nav-link">Home</a>
 										</li>
 
 										<li className="header__nav-item">
@@ -40,7 +40,7 @@ const About = () => {
 										</li>
 
 
-										<li className="dropdown header__nav-item">
+										{/* <li className="dropdown header__nav-item">
 											<a className="dropdown-toggle header__nav-link header__nav-link--more" href="#"
 												role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true"
 												aria-expanded="false"><i className="icon ion-ios-more"></i></a>
@@ -51,7 +51,7 @@ const About = () => {
 												<li><a href="signup.js">Sign Up</a></li>
 												<li><a href="help.js">404 Page</a></li>
 											</ul>
-										</li>
+										</li> */}
 
 									</ul>
 
@@ -104,7 +104,7 @@ const About = () => {
 
 
 								<ul className="breadcrumb">
-									<li className="breadcrumb__item"><a href="#">Home</a></li>
+									<li className="breadcrumb__item"><a href="Main1.js">Home</a></li>
 									<li className="breadcrumb__item breadcrumb__item--active">About Us</li>
 								</ul>
 
@@ -250,7 +250,7 @@ const About = () => {
 							<h6 className="footer__title">Resources</h6>
 							<ul className="footer__list">
 								<li><a href="help.js">About Us</a></li>
-								<li><a href="help.js"></a></li>
+							
 								<li><a href="help.js">Help</a></li>
 							</ul>
 						</div>
@@ -258,9 +258,9 @@ const About = () => {
 						<div className="col-6 col-sm-4 col-md-3">
 							<h6 className="footer__title">Legal</h6>
 							<ul className="footer__list">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Security</a></li>
+								<li><a href="https://freeross.org">Terms of Use</a></li>
+								<li><a href="https://freeross.org">Privacy Policy</a></li>
+								<li><a href="https://freeross.org">Security</a></li>
 							</ul>
 						</div>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const pricing = () => {
     return (
 
@@ -15,7 +16,7 @@ const pricing = () => {
                             <div class="col-12">
                                 <div class="header__content">
 
-                                    <a href="Main.js" class="header__logo">
+                                    <a href="Main1.js" class="header__logo">
 
                                         <img src="img/HappyCelebratedChihuahua-size_restricted.gif" alt=""></img>
 
@@ -26,7 +27,7 @@ const pricing = () => {
                                     <ul class="header__nav">
 
                                         <li class="header__nav-item">
-                                            <a href="Main.js" class="header__nav-link">Home</a>
+                                            <a href="Main1.js" class="header__nav-link">Home</a>
                                         </li>
 
 
@@ -118,7 +119,7 @@ const pricing = () => {
 
 
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb__item"><a href="#">Home</a></li>
+                                 <li class="breadcrumb__item"><a href="Main1.js">Home</a></li>
                                     <li class="breadcrumb__item breadcrumb__item--active">pricing</li>
                                 </ul>
 

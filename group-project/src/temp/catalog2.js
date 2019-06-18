@@ -14,7 +14,7 @@ const catalog2 = () => {
                             <div class="col-12">
                                 <div class="header__content">
 
-                                    <a href="Main.js" class="header__logo">
+                                    <a href="Main1.js" class="header__logo">
 
                                         <img src="img/HappyCelebratedChihuahua-size_restricted.gif" alt=""></img>
 
@@ -23,7 +23,7 @@ const catalog2 = () => {
                                     <ul class="header__nav">
 
                                         <li class="header__nav-item">
-                                            <a href="Main.js" class="header__nav-link">Home</a>
+                                            <a href="Main1.js" class="header__nav-link">Home</a>
                                         </li>
 
 
@@ -40,7 +40,7 @@ const catalog2 = () => {
                                         </li>
 
 
-                                        <li class="dropdown header__nav-item"></li>
+                                        {/* <li class="dropdown header__nav-item"></li>
                                         <a class="dropdown-toggle header__nav-link header__nav-link--more" href="#"
                                             role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false"><i class="icon ion-ios-more"></i></a>
@@ -50,8 +50,8 @@ const catalog2 = () => {
                                             <li><a href="signin.js">Sign In</a></li>
                                             <li><a href="signup.js">Sign Up</a></li>
                                             <li><a href="help.js">404 Page</a></li>
-                                        </ul>
-                                    </ul>
+                                        </ul> */}
+                                    {/* </ul>
 
                                     <div class="header__auth">
                                         <button class="header__search-btn" type="button">
@@ -101,7 +101,7 @@ const catalog2 = () => {
                                 <h2 class="section__title">History</h2>
 
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb__item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb__item"><a href="Main1.js">Home</a></li>
                                     <li class="breadcrumb__item breadcrumb__item--active">History</li>
                                 </ul>
 
@@ -114,29 +114,29 @@ const catalog2 = () => {
             <br></br>
             <div class="catalog">
                 <div class="container">
-                    <div class="row">
+                    <div class="row"> */}
 
-                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                        {/* <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                             <div class="card">
                                 <div class="card__cover">
                                     <img src="img/covers/cover.jpg" alt=""></img>
-                                    <a href="#" class="card__play">
+                                    <a href="Main1.js" class="card__play">
                                         <i class="icon ion-ios-play"></i>
                                     </a>
                                 </div>
                                 <div class="card__content">
                                     <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
                                     <span class="card__category">
-                                        <a href="#">Action</a>
-                                        <a href="#">Conspiracy</a>
+                                        <a href="Main1.js">Action</a>
+                                        <a href="Main1.js">Conspiracy</a>
                                     </span>
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
 
-
+{/* 
                         <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                             <div class="card">
                                 <div class="card__cover">
@@ -197,9 +197,9 @@ const catalog2 = () => {
                                 </div>
                             </div>
                         </div>
+ */}
 
-
-
+{/* 
                         <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                             <div class="card">
                                 <div class="card__cover">
@@ -395,20 +395,19 @@ const catalog2 = () => {
                             <h2 class="section__title">History</h2>
                         </div>
 
-
-                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+       <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                             <div class="card">
                                 <div class="card__cover">
                                     <img src="img/covers/cover.jpg" alt=""></img>
-                                    <a href="#" class="card__play">
+                                    <a href="Main1.js" class="card__play">
                                         <i class="icon ion-ios-play"></i>
                                     </a>
                                 </div>
                                 <div class="card__content">
                                     <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
                                     <span class="card__category">
-                                        <a href="#">Action</a>
-                                        <a href="#">Conspiracy</a>
+                                        <a href="Main1.js">Action</a>
+                                        <a href="Main1.js">Conspiracy</a>
                                     </span>
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
                                 </div>
@@ -521,7 +520,7 @@ const catalog2 = () => {
 
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <footer class="footer">
                 <div class="container">
@@ -573,21 +572,20 @@ const catalog2 = () => {
                 </div>
             </footer>
 
-            <script src="js/jquery-3.3.1.min.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-            <script src="js/owl.carousel.min.js"></script>
-            <script src="js/jquery.mousewheel.min.js"></script>
-            <script src="js/jquery.mCustomScrollbar.min.js"></script>
-            <script src="js/wNumb.js"></script>
-            <script src="js/nouislider.min.js"></script>
-            <script src="js/plyr.min.js"></script>
-            <script src="js/jquery.morelines.min.js"></script>
-            <script src="js/photoswipe.min.js"></script>
-            <script src="js/photoswipe-ui-default.min.js"></script>
-            <script src="js/main.js"></script>
+            {/* <script src="public/js/jquery-3.3.1.min.js"></script>
+            <script src="public/js/bootstrap.bundle.min.js"></script>
+            <script src="public/js/owl.carousel.min.js"></script>
+            <script src="public/js/jquery.mousewheel.min.js"></script>
+            <script src="public/js/jquery.mCustomScrollbar.min.js"></script>
+            <script src="public/js/wNumb.js"></script>
+            <script src="public/js/nouislider.min.js"></script>
+            <script src="public/js/plyr.min.js"></script>
+            <script src="public/js/jquery.morelines.min.js"></script>
+            <script src="public/js/photoswipe.min.js"></script>
+            <script src="public/js/photoswipe-ui-default.min.js"></script>
+        <script src="public/js/main.js"></script> */}
 
 
-        </div>
 
 
 

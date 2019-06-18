@@ -2,14 +2,10 @@ import React from 'react'
 
 
 
-
-
 const Main2 = () => {
     return (
 
-
 <div className="body">
-
 
     <header className="header">
         <div className="header__wrap">
@@ -17,27 +13,24 @@ const Main2 = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="header__content">
-
                             <a href="index.html" className="header__logo">
-
                                 <img src="img/HappyCelebratedChihuahua-size_restricted.gif" alt=""></img>
                             </a>
-
                             <ul className="header__nav">
 
                                 <li className="header__nav-item">
-                                    <a className="dropdown-toggle header__nav-link" href="#" role="button"
+                                    <a className="dropdown-toggle header__nav-link" href="Main1.js" role="button"
                                         id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">Home</a>
 
                                     <ul className="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-                                        <li><a href="index.html">Home slideshow bg</a></li>
+                                        <li><a href="Main1.js">Home slideshow bg</a></li>
                                         <li><a href="Main2.js">Home static bg</a></li>
                                     </ul>
                                 </li>
 
                                 <li className="header__nav-item">
-                                    <a className="dropdown-toggle header__nav-link" href="#" role="button"
+                                    <a className="dropdown-toggle header__nav-link" href="catalog.js" role="button"
                                         id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">Catalog</a>
 

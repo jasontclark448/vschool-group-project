@@ -6,10 +6,6 @@ require('dotenv').config()
 // npm install dotenv on root folder
 const expressJwt = require('express-Jwt')
 // npm install express-jwt
-<<<<<<< HEAD
-//npm install jsonwebtoken
-app.use(express.json())
-=======
 const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
@@ -24,7 +20,6 @@ var ObjectID = require('mongodb').ObjectID;
 const mongoUri = "mongodb://localhost:27017/tings-video-db"
 
 app.set('view engine', 'ejs')
->>>>>>> e2bf07966852f34fbdb54ea57cd34cc6aeac9834
 
 // mongoose.connect(
 //     mongoUri, 
@@ -253,7 +248,6 @@ app.use('/api', expressJwt({secret:process.env.SECRET}))
 
 // below replace todo with server where the object is
 // app.use('./todo',)require('./routes/todo.js')
-app.use('/api/todo', require('./routes/todo'))
 
 app.use((err, req, next) => {
     console.error(err)

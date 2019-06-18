@@ -10,6 +10,9 @@ const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const Movie = require('./Models/Movie.js')
 
+var GridStore = require('mongodb').GridStore;
+var ObjectID = require('mongodb').ObjectID;
+
 const mongoUri = "mongodb://localhost:27017/tings-video-db"
 
 app.set('view engine', 'ejs')
@@ -134,34 +137,15 @@ app.get('/users', (req, res) => {
 })
 
 app.get('/video/:filename', (req, res) => {
+    console.log('fired')
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         if (!file || file.leng === 0) {
             return res.status(404).json({
                 err: 'No file exist'
             })
         }
-        //check if video
-        if (file.contentType === 'video/mp4' || "audio/x-m4a") {
-            // read output to browser
             const readStream = gfs.createReadStream(file.filename)
             readStream.pipe(res)
-            
-            // const stream = fs.createReadStream(file.filename)
-            // console.log('type: ', typeof file)
-
-            // stream.on('open', function () {
-            //     res.writeHead(206, {
-            //         "Content-Range": "bytes " + begin + "-" + end + "/" + total, "Accept-Ranges": "bytes",
-            //         "Content-Length": chunksize, "Content-Type": "new/mp4"
-            //     });
-            //     stream.pipe(res);
-            // });
-
-        } else {
-            res.status(404).json({
-                err: 'not a video'
-            })
-        }
     })
 })
 
@@ -169,6 +153,81 @@ app.get('/video/:filename', (req, res) => {
 app.get('/users', (req, res) => {
     res.send('users routes working')
 })
+
+
+
+
+
+
+
+
+
+function StreamGridFile(req, res, GridFile) {
+    if(req.headers['range']) {
+  
+      // Range request, partialle stream the file
+      console.log('Range Reuqest');
+      var parts = req.headers['range'].replace(/bytes=/, "").split("-");
+      var partialstart = parts[0];
+      var partialend = parts[1];
+  
+      var start = parseInt(partialstart, 10);
+      var end = partialend ? parseInt(partialend, 10) : GridFile.length -1;
+      var chunksize = (end-start)+1;
+  
+      console.log('Range ',start,'-',end);
+  
+      res.writeHead(206, {
+        'Content-Range': 'bytes ' + start + '-' + end + '/' + GridFile.length,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': GridFile.contentType
+      });
+  
+      // Set filepointer
+      GridFile.seek(start, function() {
+        // get GridFile stream
+        var stream = GridFile.stream(true);
+  
+        // write to response
+        stream.on('data', function(buff) {
+          // count data to abort streaming if range-end is reached
+          // perhaps theres a better way?
+          start += buff.length;
+          if(start >= end) {
+            // enough data send, abort
+            GridFile.close();
+            res.end();
+          } else {
+            res.write(buff);
+          }
+        });
+      });
+  
+    } else {
+  
+      // stream back whole file
+      console.log('No Range Request');
+      res.header('Content-Type', GridFile.contentType);
+      res.header('Content-Length', GridFile.length);
+      var stream = GridFile.stream(true);
+      stream.pipe(res);
+    }
+  }
+
+
+
+
+// app.get('/my', function(req, res) {
+//     new GridStore(conn, new ObjectID("5d07efad85bfeb6a556a0a5d"), null, 'r').open(function(err, GridFile) {
+//       if(!GridFile) {
+//         res.send(404,'Not Found');
+//         return;
+//       }
+      
+//       StreamGridFile(req, res, GridFile)
+//     });
+//   });
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`)

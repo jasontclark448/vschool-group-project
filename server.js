@@ -2,10 +2,6 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const port = 7777
-require('dotenv').config() 
-// npm install dotenv on root folder
-const expressJwt = require('express-Jwt')
-// npm install express-jwt
 const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
@@ -35,8 +31,6 @@ const conn = mongoose.createConnection(mongoUri)
 
 let gfs;
 conn.once('open', () => {
-    //init stream
-    // console.log('in once: ', conn.db)
     gfs = Grid(conn.db, mongoose.mongo)
     gfs.collection('file')
 })
@@ -76,20 +70,6 @@ app.use(express.json())
 //             ins = fs.createReadStream(files.file.path);
 //             console.log('insssssssssssss' + ins);
 //             ous = fs.createWriteStream(__dirname + '/static/uploads/videos/' + files.file.filename);
-//             // util.pump(ins, ous, function (err) {
-//             //     if (err) {
-//             //         next(err);
-//             //     } else {
-//             //         RegProvider.save({
-//             //             file: req.param(files.file.filename),
-//             //             filename: req.param('filename')
-//             //         }, function (error, docs) {
-//             //             res.redirect('/videos');
-//             //         });
-//             //     }
-//             // });
-//             //console.log('\nUploaded %s to %s', files.file.filename, files.file.path);
-//             //res.send('Uploaded ' + files.file.filename + ' to ' + files.file.path);
 //         }
 //     });
 // });
@@ -101,15 +81,6 @@ app.get('/', (req, res) => {
 app.post('/uploads', upload.single('file'), (req, res) => {
     console.log(req.body)
     res.json({ file: req.file })
-    // const newMovie = new Movie(req.body)
-    // newMovie.save((err, savedMovie) => {
-    //     if (err) {
-    //         res.status(500)
-    //         return res.send(err)
-    //     }
-    //     // return res.status(201).send(savedMovie)
-    //     return res.json({file: req.body})
-    // })
 })
 
 app.get('/files', (req, res) => {
@@ -125,16 +96,6 @@ app.get('/files', (req, res) => {
 })
 
 
-app.get('/files/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        if (!file || file.leng === 0) {
-            return res.status(404).json({
-                err: 'No file exist'
-            })
-        }
-        return res.json(file)
-    })
-})
 
 app.get('/users', (req, res) => {
     res.send('users routes working')
@@ -148,111 +109,109 @@ app.get('/video/:filename', (req, res) => {
                 err: 'No file exist'
             })
         }
+        //check if video
+        // if (file.contentType === 'video/mp4' || "audio/x-m4a") {
+            // read output to browser//////////////////////////////
             const readStream = gfs.createReadStream(file.filename)
+            // console.log('readstream', readStream)
+            // console.log('file', file)
+            
             readStream.pipe(res)
+            
+        })
     })
-})
-
-
-app.get('/users', (req, res) => {
-    res.send('users routes working')
-})
-
-
-
-
-
-
-
-
-
-function StreamGridFile(req, res, GridFile) {
-    if(req.headers['range']) {
-  
-      // Range request, partialle stream the file
-      console.log('Range Reuqest');
-      var parts = req.headers['range'].replace(/bytes=/, "").split("-");
-      var partialstart = parts[0];
-      var partialend = parts[1];
-  
-      var start = parseInt(partialstart, 10);
-      var end = partialend ? parseInt(partialend, 10) : GridFile.length -1;
-      var chunksize = (end-start)+1;
-  
-      console.log('Range ',start,'-',end);
-  
-      res.writeHead(206, {
-        'Content-Range': 'bytes ' + start + '-' + end + '/' + GridFile.length,
-        'Accept-Ranges': 'bytes',
-        'Content-Length': chunksize,
-        'Content-Type': GridFile.contentType
-      });
-  
-      // Set filepointer
-      GridFile.seek(start, function() {
-        // get GridFile stream
-        var stream = GridFile.stream(true);
-  
-        // write to response
-        stream.on('data', function(buff) {
-          // count data to abort streaming if range-end is reached
-          // perhaps theres a better way?
-          start += buff.length;
-          if(start >= end) {
-            // enough data send, abort
-            GridFile.close();
-            res.end();
-          } else {
-            res.write(buff);
-          }
+    
+    
+    app.get('/users', (req, res) => {
+        res.send('users routes working')
+    })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function StreamGridFile(req, res, GridFile) {
+        if (req.headers['range']) {
+            
+            // Range request, partialle stream the file
+            console.log('Range Reuqest');
+            var parts = req.headers['range'].replace(/bytes=/, "").split("-");
+            var partialstart = parts[0];
+            var partialend = parts[1];
+            
+            var start = parseInt(partialstart, 10);
+            var end = partialend ? parseInt(partialend, 10) : GridFile.length - 1;
+            var chunksize = (end - start) + 1;
+            
+            console.log('Range ', start, '-', end);
+            
+            res.writeHead(206, {
+                'Content-Range': 'bytes ' + start + '-' + end + '/' + GridFile.length,
+                'Accept-Ranges': 'bytes',
+                'Content-Length': chunksize,
+                'Content-Type': GridFile.contentType
+            });
+            
+            // Set filepointer
+            GridFile.seek(start, function () {
+                // get GridFile stream
+                var stream = GridFile.stream(true);
+                
+                // write to response
+                stream.on('data', function (buff) {
+                    // count data to abort streaming if range-end is reached
+                    // perhaps theres a better way?
+                    start += buff.length;
+                    if (start >= end) {
+                        // enough data send, abort
+                        GridFile.close();
+                        res.end();
+                    } else {
+                        res.write(buff);
+                    }
+                });
+            });
+            
+        } else {
+            
+            // stream back whole file
+            console.log('No Range Request');
+            res.header('Content-Type', GridFile.contentType);
+            res.header('Content-Length', GridFile.length);
+            var stream = GridFile.stream(true);
+            stream.pipe(res);
+        }
+    }
+    
+    
+    
+    
+    app.get('/my', function (req, res) {
+        new GridStore(conn, new ObjectID("5d07efad85bfeb6a556a0a5d"), null, 'r').open(function (err, GridFile) {
+            if (!GridFile) {
+                res.send(404, 'Not Found');
+                return;
+            }
+            
+            StreamGridFile(req, res, GridFile)
         });
-      });
-  
-    } else {
-  
-      // stream back whole file
-      console.log('No Range Request');
-      res.header('Content-Type', GridFile.contentType);
-      res.header('Content-Length', GridFile.length);
-      var stream = GridFile.stream(true);
-      stream.pipe(res);
-    }
-  }
-
-
-
-
-// app.get('/my', function(req, res) {
-//     new GridStore(conn, new ObjectID("5d07efad85bfeb6a556a0a5d"), null, 'r').open(function(err, GridFile) {
-//       if(!GridFile) {
-//         res.send(404,'Not Found');
-//         return;
-//       }
-      
-//       StreamGridFile(req, res, GridFile)
-//     });
-//   });
-
-app.listen(port, () => {
-    console.log(`Server is running on ${port}`)
-})
-
-app.use('/auth', require('./routes/auth'))
-app.use('/api', expressJwt({secret:process.env.SECRET}))
-
-// Add `/api` before your existing `app.use` of the todo routes.
-// This way, it must go through the express-jwt middleware before
-// accessing any todos, making sure we can reference the "currently
-// logged-in user" in our todo routes.
-
-
-// below replace todo with server where the object is
-// app.use('./todo',)require('./routes/todo.js')
-
-app.use((err, req, next) => {
-    console.error(err)
-    if (err.name === 'UnauthorizedError'){
-        res.status(er.status)
-    }
-    return res.send({ message: err.message})
-})
+    });
+    
+    app.get('/files/:filename', (req, res) => {
+        gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+            if (!file || file.leng === 0) {
+                return res.status(404).json({
+                    err: 'No file exist'
+                })
+            }
+            return res.json(file)
+        })
+    })
+    
+    app.listen(port, () => {
+        console.log(`Server is running on ${port}`)
+    })

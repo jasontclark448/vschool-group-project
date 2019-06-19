@@ -35,8 +35,6 @@ class Play extends Component {
         return <>
            <h1>Video: {this.state.video}</h1>
                 <video src={this.state.video} width="320" height="240" controls>
-                <source src={this.state.video} />
-
                 Your browser does not support the video tag.
                 </video>
         </>

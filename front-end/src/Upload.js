@@ -17,6 +17,8 @@ class Upload extends React.Component {
                             <div className="custom-file mb-3">
                                 <input type="file" name='file' id='file' className='custom-file-input' />
                                 <label for="file" className='custom-file-label'>Choose File</label>
+                                <input type="text" name='description' id='file' className='custom-file-input' />
+                                <label for="description" className='custom-file-label'>Description</label>
                                 <input type="submit" value="submit" className='btn btn-primary btn-block' />
                             </div>
                         </form>
